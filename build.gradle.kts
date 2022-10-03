@@ -41,6 +41,11 @@ dependencies {
 	implementation("org.jetbrains.exposed:exposed-jdbc:0.39.2")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
 	compileOnly("org.springframework.boot:spring-boot-configuration-processor")
+	implementation("io.netty:netty-resolver-dns-native-macos:4.1.82.Final")
+	runtimeOnly("io.netty:netty-resolver-dns-native-macos:4.1.82.Final:osx-aarch_64")
+	implementation("org.springframework.boot:spring-boot-configuration-processor:2.7.3")
+
+
 }
 
 tasks.withType<KotlinCompile> {

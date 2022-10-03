@@ -1,6 +1,6 @@
 package com.tempo.challenge.service
 
-import com.tempo.challenge.configuration.CgjressApiConfig
+import com.tempo.challenge.configuration.ApiServiceConfiguration
 import com.tempo.challenge.model.User
 import com.tempo.challenge.model.Team
 import org.springframework.http.HttpStatus
@@ -12,36 +12,36 @@ import reactor.core.publisher.Mono
 
 class WebClientService(
     private val webClient: WebClient,
-    private val apiServiceConfig: CgjressApiConfig,
+    private val apiServiceConfig: ApiServiceConfiguration,
 ) {
 
-    fun getUserAsynchronous(
+    fun getUser(
         userId: String,
-    ): Mono<User> = webClient
+    ): ResponseEntity<User>? = webClient
         .get()
         .uri(UriComponentsBuilder
             .fromHttpUrl(apiServiceConfig.url)
-            .path("/users/")
-            .queryParam("id",userId)
-            .build()
+            .path("/users/{id}")
+            .buildAndExpand(userId)
             .toUri())
         .retrieve()
         .onStatus(HttpStatus::is4xxClientError) { Mono.error(RuntimeException("4XX Error ${it.statusCode()}")) }
         .onStatus(HttpStatus::is5xxServerError) { Mono.error(RuntimeException("5XX Error ${it.statusCode()}")) }
-        .bodyToMono(User::class.java)
+        .toEntity(User::class.java)
+        .block()
 
-    fun getTeamAsynchronous(
+    fun getTeam(
         teamId: String,
-    ): Mono<Team> = webClient
+    ): ResponseEntity<Team>? = webClient
         .get()
         .uri(UriComponentsBuilder
             .fromHttpUrl(apiServiceConfig.url)
-            .path("/teams/")
-            .queryParam("id",teamId)
-            .build()
+            .path("/teams/{id}")
+            .buildAndExpand(teamId)
             .toUri())
         .retrieve()
         .onStatus(HttpStatus::is4xxClientError) { Mono.error(RuntimeException("4XX Error ${it.statusCode()}")) }
         .onStatus(HttpStatus::is5xxServerError) { Mono.error(RuntimeException("5XX Error ${it.statusCode()}")) }
-        .bodyToMono(Team::class.java)
+        .toEntity(Team::class.java)
+        .block()
 }
