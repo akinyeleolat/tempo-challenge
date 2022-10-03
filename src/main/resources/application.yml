@@ -1,0 +1,27 @@
+# https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#common-application-properties-data
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://jelani.db.elephantsql.com/swkalxag?user=swkalxag&password=w1cs7EXQye-sfDFL8gWDiD84HiAdCMHo&sslmode=require
+  jpa:
+    hibernate:
+      # Hibernate ddl auto (create, create-drop, validate, update)
+      # Defaults to "create-drop" when using an embedded database and no schema manager was detected
+      ddl-auto: update
+    # Enable logging of SQL statements
+    show-sql: true
+    # Whether to initialize the schema on startup
+    generate-ddl: true
+    defer-datasource-initialization: true
+    properties:
+      # Hibernate Properties
+      hibernate:
+        # The SQL dialect makes Hibernate generate better SQL for the chosen database
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+        format_sql: true
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+  sql:
+    init:
+      mode: never
+      data-locations: classpath:data.sql
