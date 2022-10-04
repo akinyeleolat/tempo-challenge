@@ -1,7 +1,11 @@
 package com.tempo.challenge.controller
 
+import com.tempo.challenge.dto.TeamRoleDTO
+import com.tempo.challenge.dto.TeamRoleInputDTO
 import com.tempo.challenge.model.TeamRole
 import com.tempo.challenge.service.TeamRoleService
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.GetMapping
@@ -19,5 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 @RequestMapping("/teamrole")
 class TeamRoleController(private val teamRoleService: TeamRoleService) {
     @PostMapping
-    fun createTeamRole(@RequestBody payload: TeamRole): TeamRole = teamRoleService.createTeamRole(payload)
+    fun createTeamRole(@Validated @RequestBody payload: TeamRoleInputDTO): ResponseEntity<TeamRoleDTO> {
+        return ResponseEntity.status(HttpStatus.CREATED).body(teamRoleService.createTeamRole(payload))
+    }
 }
