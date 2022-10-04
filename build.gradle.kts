@@ -30,11 +30,13 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.antlr:stringtemplate:4.0.2")
-	compileOnly("org.projectlombok:lombok")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    compileOnly("org.projectlombok:lombok")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	annotationProcessor("org.projectlombok:lombok")
 	runtimeOnly("com.h2database:h2")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	runtimeOnly("org.postgresql:postgresql")
 	implementation("org.jetbrains.exposed:exposed-core:0.39.2")
 	implementation("org.jetbrains.exposed:exposed-dao:0.39.2")
@@ -44,6 +46,9 @@ dependencies {
 	implementation("io.netty:netty-resolver-dns-native-macos:4.1.82.Final")
 	runtimeOnly("io.netty:netty-resolver-dns-native-macos:4.1.82.Final:osx-aarch_64")
 	implementation("org.springframework.boot:spring-boot-configuration-processor:2.7.3")
+	testImplementation("org.junit.jupiter:junit-jupiter:5.9.0")
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("io.mockk:mockk:1.12.8")
 
 
 }

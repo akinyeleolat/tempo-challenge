@@ -25,3 +25,5 @@ spring:
     init:
       mode: never
       data-locations: classpath:data.sql
+  profiles:
+    active: default
