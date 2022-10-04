@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: secret
+  jpa:
+    hibernate:
+      # Hibernate ddl auto (create, create-drop, validate, update)
+      # Defaults to "create-drop" when using an embedded database and no schema manager was detected
+      ddl-auto: update
+    # Enable logging of SQL statements
+    show-sql: true
+    # Whether to initialize the schema on startup
+    generate-ddl: true
+    defer-datasource-initialization: true
+    properties:
+      # Hibernate Properties
+      hibernate:
+        # The SQL dialect makes Hibernate generate better SQL for the chosen database
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+
+  sql:
+    init:
+      platform: h2
+
+  profiles:
+    active: testing
