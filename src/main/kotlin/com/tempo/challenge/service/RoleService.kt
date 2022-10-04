@@ -22,4 +22,6 @@ class RoleService(
 
     fun checkRoleExist(roleId: Long): Boolean = roleRepository.existsById(roleId)
 
+    fun getRolesByName(name: String): Role? = roleRepository.findByName(name)
+
 }
