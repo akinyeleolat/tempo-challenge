@@ -92,19 +92,6 @@ internal class TeamRoleControllerTest @Autowired constructor(
                     status { isNotFound() }
                 }
         }
-
-        @Test
-        fun `should return 400 values not missing`() {
-            val newTeamRole = TeamRoleInputDTO(null, "","")
-            mockMvc.post(baseUrl) {
-                contentType = MediaType.APPLICATION_JSON
-                content = objectMapper.writeValueAsString(newTeamRole)
-            }
-                .andDo { print() }
-                .andExpect {
-                    status { isBadRequest() }
-                }
-        }
     }
 
 }
