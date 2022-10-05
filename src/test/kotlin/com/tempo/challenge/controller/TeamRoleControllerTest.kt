@@ -38,10 +38,23 @@ internal class TeamRoleControllerTest @Autowired constructor(
                 }
         }
 
+        @Test
+        fun `should return 409 if user already assigned`() {
+            val newTeamRole = TeamRoleInputDTO(1,"fa1529de-5f20-49a7-ad25-a494008dd322","5071b4fc-43f2-47a2-8403-e934dc270606")
+            mockMvc.post(baseUrl) {
+                contentType = MediaType.APPLICATION_JSON
+                content = objectMapper.writeValueAsString(newTeamRole)
+            }
+                .andDo { print() }
+                .andExpect {
+                    status { isConflict() }
+                }
+        }
+
 
         @Test
         fun `should add team role with default role when role not supplied`() {
-            val newTeamRole = TeamRoleInputDTO(null, "fa1529de-5f20-49a7-ad25-a494008dd322","29191298-248d-48d7-8a6a-0bfecbc75f14")
+            val newTeamRole = TeamRoleInputDTO(null, "aa569071-6ade-4ff6-b567-6466fcbae74a","29191298-248d-48d7-8a6a-0bfecbc75f14")
             mockMvc.post(baseUrl) {
                 contentType = MediaType.APPLICATION_JSON
                 content = objectMapper.writeValueAsString(newTeamRole)

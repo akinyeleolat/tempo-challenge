@@ -24,6 +24,6 @@ class ExceptionControllerAdvice {
             HttpStatus.NOT_FOUND.value(),
             ex.message
         )
-        return ResponseEntity(errorMessage, HttpStatus.NOT_FOUND)
+        return ResponseEntity(errorMessage, ex.statusCode)
     }
 }

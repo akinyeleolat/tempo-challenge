@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface TeamRoleRepository: JpaRepository<TeamRole, Long> {
+    fun findByTeamId(teamId:String):TeamRole?
+    fun searchTeamRoleByUserId(userId:String):TeamRole?
 }
