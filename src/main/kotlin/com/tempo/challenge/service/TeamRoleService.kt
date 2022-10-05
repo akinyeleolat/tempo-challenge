@@ -39,6 +39,10 @@ class TeamRoleService(
                     throw ApiServiceException(HttpStatus.NOT_FOUND, "Role not found")
                 }
 
+                teamRoleRepository.searchTeamRoleByUserId(userId = teamRole.userId) != null ->{
+                    throw ApiServiceException(HttpStatus.CONFLICT, "User already assigned to team")
+                }
+
                 user?.hasBody() == false -> {
                     throw ApiServiceException(HttpStatus.NOT_FOUND, "User not found")
                 }
