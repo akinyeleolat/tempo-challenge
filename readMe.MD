@@ -67,6 +67,12 @@ Response
 
 
 
+## Documentation
+Other API request
+
+[Documentation](https://documenter.getpostman.com/view/5081938/2s83zdwmS8)
+
+
 ## Deployment
 
 To deploy this project run

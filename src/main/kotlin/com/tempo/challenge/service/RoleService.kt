@@ -1,5 +1,6 @@
 package com.tempo.challenge.service
 
+import com.tempo.challenge.dto.RoleDTO
 import com.tempo.challenge.exception.ApiServiceException
 import com.tempo.challenge.repository.RoleRepository
 import com.tempo.challenge.model.Role
@@ -23,5 +24,20 @@ class RoleService(
     fun checkRoleExist(roleId: Long): Boolean = roleRepository.existsById(roleId)
 
     fun getRolesByName(name: String): Role? = roleRepository.findByName(name)
+
+    fun getAllRoles():List<Role> = roleRepository.findAll()
+
+    fun addRole(roleDTO: RoleDTO):Role{
+
+            if (roleRepository.findByName(roleDTO.name) != null){
+                throw ApiServiceException(HttpStatus.CONFLICT, "Role exist")
+            } else{
+                val roleInput = Role(
+                    name= roleDTO.name,
+                    id=0
+                )
+         return   roleRepository.save(roleInput)
+        }
+    }
 
 }
