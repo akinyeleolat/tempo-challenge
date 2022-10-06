@@ -21,7 +21,7 @@ class ExceptionControllerAdvice {
     fun handleApiServiceException(ex: ApiServiceException): ResponseEntity<ErrorMessageModel> {
 
         val errorMessage = ErrorMessageModel(
-            HttpStatus.NOT_FOUND.value(),
+            ex.statusCode.value(),
             ex.message
         )
         return ResponseEntity(errorMessage, ex.statusCode)
