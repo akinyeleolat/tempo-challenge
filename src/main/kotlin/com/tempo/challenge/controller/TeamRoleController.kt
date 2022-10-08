@@ -1,5 +1,6 @@
 package com.tempo.challenge.controller
 
+import com.tempo.challenge.dto.TeamMembershipListDTO
 import com.tempo.challenge.dto.TeamRoleDTO
 import com.tempo.challenge.dto.TeamRoleInputDTO
 import com.tempo.challenge.model.TeamRole
@@ -25,5 +26,15 @@ class TeamRoleController(private val teamRoleService: TeamRoleService) {
     @PostMapping
     fun createTeamRole(@Validated @RequestBody payload: TeamRoleInputDTO): ResponseEntity<TeamRoleDTO> {
         return ResponseEntity.status(HttpStatus.CREATED).body(teamRoleService.createTeamRole(payload))
+    }
+
+    @PostMapping("/find")
+    fun findTeamRole(@Validated @RequestBody payload: TeamRoleInputDTO): ResponseEntity<TeamRoleDTO> {
+        return ResponseEntity.status(HttpStatus.OK).body(teamRoleService.getMembershipByRole(payload))
+    }
+
+    @GetMapping("/member/{roleId}")
+    fun teamRoleMembership(@PathVariable("roleId") roleId: Long):ResponseEntity<TeamMembershipListDTO>{
+        return ResponseEntity.status(HttpStatus.OK).body(teamRoleService.getRoleMembership(roleId))
     }
 }

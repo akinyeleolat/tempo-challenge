@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository
 interface TeamRoleRepository: JpaRepository<TeamRole, Long> {
     fun findByTeamId(teamId:String):TeamRole?
     fun findAllByTeamId(teamId:String):TeamRole?
-    fun findAllByRoleId(roleId: Long): TeamRole?
+    fun findAllByRoleId(roleId: Long): List<TeamRole>
+    fun searchTeamRoleByUserIdAndTeamId(userId: String, teamId: String): TeamRole?
     fun searchTeamRoleByUserId(userId:String):TeamRole?
 }

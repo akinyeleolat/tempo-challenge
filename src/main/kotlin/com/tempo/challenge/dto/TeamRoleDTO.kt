@@ -25,3 +25,13 @@ class TeamRoleDTO(
     var role: Role,
     var team: TeamDTO?
 )
+
+class TeamRoleMembershipDTO(
+    var user: User?,
+    var team: TeamDTO?
+)
+
+class TeamMembershipListDTO(
+    var role: Role,
+    var membershipList:List<TeamRoleMembershipDTO>
+)
